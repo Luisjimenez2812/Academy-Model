@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+academy_courses_full_access,academy_courses_full_access,model_academy_courses,,1,1,1,1
+academy_sessions_full_access,academy_sessions_full_access,model_academy_sessions,,1,1,1,1

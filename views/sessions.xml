@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <record id="sessions_view_form" model="ir.ui.view">
+            <field name="name">academy.sessions.view.form</field>
+            <field name="model">academy.sessions</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="course_id"/>
+                                <field name="name"/>
+                                <field name="instructor_id"/>
+                                <field name="active"/>
+                            </group>
+                            <group string="Program">
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                                <field name="taken_seats" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <label for="attendee_ids"/>
+                        <field name="attendee_ids"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">acdemy.sessions.tree</field>
+            <field name="model">academy.sessions</field>
+            <field name="arch" type="xml">
+                <tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="duration" invisible="1"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="session_calendar_view">
+            <field name="name">academy.sessions.calendar</field>
+            <field name="model">academy.sessions</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="start_date" date_stop="end_date" color="instructor_id">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="sessions_list_action" model="ir.actions.act_window">
+            <field name="name">Sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">academy.sessions</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"></p>
+            </field>
+        </record>
+        <menuitem id="sessions_menu_act" name="Sessions" parent="category_menu_categ" action="sessions_list_action" sequence="10"/>
+    </data>
+</odoo>
